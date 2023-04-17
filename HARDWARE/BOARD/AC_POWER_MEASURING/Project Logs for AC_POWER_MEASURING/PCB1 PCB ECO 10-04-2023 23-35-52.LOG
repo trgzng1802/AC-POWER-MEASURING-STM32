@@ -1,0 +1,15 @@
+Added Component: Designator=TP1(TP)
+Added Component: Designator=TP2(TP)
+Added Component: Designator=TP3(TP)
+Added Component: Designator=TP4(TP)
+Added Pin To Net: NetName=CURRENT_ADC Pin=TP1-TP1
+Added Pin To Net: NetName=VOLTAGE_ADC Pin=TP2-TP1
+Added Pin To Net: NetName=GND Pin=TP3-TP1
+Added Pin To Net: NetName=GND Pin=TP4-TP1
+Added Member To Class: ClassName=Measure Member=Component R8 RESISTOR
+Added Member To Class: ClassName=Measure Member=Component R9 RESISTOR
+Added Member To Class: ClassName=Measure Member=Component TP1 Test Point
+Added Member To Class: ClassName=Measure Member=Component TP2 Test Point
+Added Member To Class: ClassName=Measure Member=Component TP3 Test Point
+Added Member To Class: ClassName=Measure Member=Component TP4 Test Point
+Added Room: Name=Measure

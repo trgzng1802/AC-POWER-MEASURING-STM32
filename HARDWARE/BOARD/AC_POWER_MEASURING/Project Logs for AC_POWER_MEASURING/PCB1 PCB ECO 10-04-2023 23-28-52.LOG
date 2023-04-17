@@ -1,0 +1,167 @@
+Added Component: Designator=C1(CN1)
+Add component (AddParameter): Name = "Value"; Value = "100nF"; VariantName = "[No Variations]"
+Added Component: Designator=C2(CP1/2)
+Add component (AddParameter): Name = "Value"; Value = "1uF"; VariantName = "[No Variations]"
+Added Component: Designator=C3(CP1/2)
+Add component (AddParameter): Name = "Value"; Value = "1uF"; VariantName = "[No Variations]"
+Added Component: Designator=D1(D1A)
+Added Component: Designator=D2(LED-3mm)
+Added Component: Designator=JDC1(DC-IN)
+Add component (AddParameter): Name = "Value"; Value = "Jac DC"; VariantName = "[No Variations]"
+Added Component: Designator=P1(DOMINO 2- 5mm)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=R1(RES 1/4 W)
+Add component (AddParameter): Name = "Value"; Value = "10k/5%"; VariantName = "[No Variations]"
+Added Component: Designator=R2(RES 1/4 W)
+Add component (AddParameter): Name = "Value"; Value = "1k/5%"; VariantName = "[No Variations]"
+Added Component: Designator=R3(RES 1/4 W)
+Add component (AddParameter): Name = "Value"; Value = "47k/5%"; VariantName = "[No Variations]"
+Added Component: Designator=R4(RES 1/4 W)
+Add component (AddParameter): Name = "Value"; Value = "10k/5%"; VariantName = "[No Variations]"
+Added Component: Designator=R5(RES 1/4 W)
+Add component (AddParameter): Name = "Value"; Value = "220/5%"; VariantName = "[No Variations]"
+Added Component: Designator=R6(RES 1/4 W)
+Add component (AddParameter): Name = "Value"; Value = "220/5%"; VariantName = "[No Variations]"
+Added Component: Designator=R7(RES 1/4 W)
+Add component (AddParameter): Name = "Value"; Value = "10k/5%"; VariantName = "[No Variations]"
+Added Component: Designator=R8(RES 1/4 W)
+Add component (AddParameter): Name = "Value"; Value = "10k/5%"; VariantName = "[No Variations]"
+Added Component: Designator=R9(RES 1/4 W)
+Add component (AddParameter): Name = "Value"; Value = "10k/5%"; VariantName = "[No Variations]"
+Added Component: Designator=RV1(D7.5W4.5H10.5P0.8)
+Add component (AddParameter): Name = "(Reverse) Breakdown Voltage"; Value = "22V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "(Reverse) Peak Pulse Current"; Value = "100A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Category"; Value = "Surge Protection"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Channel Input Capacitance"; Value = "1130pF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Clamping Voltage"; Value = "48V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Website Link"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.we-online.com/redexpert/article/820551406?ad"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet Link"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "https://www.we-online.com/redexpert/spec/820551406?ad"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Diameter"; Value = "7.5mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Energy Absorption"; Value = "0.7J"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "10.5mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Wurth Elektronik"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "820551406"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Match Code"; Value = "WE-VD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mount"; Value = "Through Hole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature Max"; Value = "85°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature Min"; Value = "-40°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Voltage (AC)"; Value = "14V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Voltage (DC)"; Value = "18V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Tape and Reel"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pitch"; Value = "0.8mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Power Dissipation"; Value = "0.01W"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Width"; Value = "4.5mm"; VariantName = "[No Variations]"
+Added Component: Designator=SW1(Tact SW 4 pin)
+Add component (AddParameter): Name = "Value"; Value = "Button chip 4 pin"; VariantName = "[No Variations]"
+Added Component: Designator=U1(BLUEPILL)
+Added Component: Designator=U2(ZMPT101B)
+Added Component: Designator=U3(ZMCT103)
+Added Component: Designator=U4(MODULE LCD 2004)
+Added Component: Designator=VR1(VARISTOR 2)
+Add component (AddParameter): Name = "Value"; Value = "VR 10K"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+3.3 Pin=R1-2
+Added Pin To Net: NetName=+3.3 Pin=R4-2
+Added Pin To Net: NetName=+3.3 Pin=R7-2
+Added Pin To Net: NetName=+3.3 Pin=U1-20
+Added Pin To Net: NetName=+3.3 Pin=U1-21
+Added Pin To Net: NetName=+3.3 Pin=U1-38
+Added Net: Name=+3.3
+Added Pin To Net: NetName=+5 Pin=D1-2
+Added Pin To Net: NetName=+5 Pin=R2-2
+Added Pin To Net: NetName=+5 Pin=RV1-2
+Added Pin To Net: NetName=+5 Pin=U1-18
+Added Pin To Net: NetName=+5 Pin=U4-2
+Added Pin To Net: NetName=+5 Pin=U4-15
+Added Pin To Net: NetName=+5 Pin=VR1-1
+Added Net: Name=+5
+Added Pin To Net: NetName=CONSTRACT Pin=U4-3
+Added Pin To Net: NetName=CONSTRACT Pin=VR1-2
+Added Net: Name=CONSTRACT
+Added Pin To Net: NetName=CURRENT_ADC Pin=R6-2
+Added Pin To Net: NetName=CURRENT_ADC Pin=U1-25
+Added Pin To Net: NetName=CURRENT_ADC Pin=U3-1
+Added Net: Name=CURRENT_ADC
+Added Pin To Net: NetName=GND Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C2-2
+Added Pin To Net: NetName=GND Pin=C3-2
+Added Pin To Net: NetName=GND Pin=D1-1
+Added Pin To Net: NetName=GND Pin=D2-2
+Added Pin To Net: NetName=GND Pin=JDC1-2
+Added Pin To Net: NetName=GND Pin=R8-1
+Added Pin To Net: NetName=GND Pin=R9-1
+Added Pin To Net: NetName=GND Pin=SW1-2
+Added Pin To Net: NetName=GND Pin=SW1-4
+Added Pin To Net: NetName=GND Pin=U1-19
+Added Pin To Net: NetName=GND Pin=U1-39
+Added Pin To Net: NetName=GND Pin=U1-40
+Added Pin To Net: NetName=GND Pin=U4-1
+Added Pin To Net: NetName=GND Pin=U4-16
+Added Pin To Net: NetName=GND Pin=VR1-3
+Added Net: Name=GND
+Added Pin To Net: NetName=LCD_DB4 Pin=U1-14
+Added Pin To Net: NetName=LCD_DB4 Pin=U4-11
+Added Net: Name=LCD_DB4
+Added Pin To Net: NetName=LCD_DB5 Pin=U1-15
+Added Pin To Net: NetName=LCD_DB5 Pin=U4-12
+Added Net: Name=LCD_DB5
+Added Pin To Net: NetName=LCD_DB6 Pin=U1-16
+Added Pin To Net: NetName=LCD_DB6 Pin=U4-13
+Added Net: Name=LCD_DB6
+Added Pin To Net: NetName=LCD_DB7 Pin=U1-17
+Added Pin To Net: NetName=LCD_DB7 Pin=U4-14
+Added Net: Name=LCD_DB7
+Added Pin To Net: NetName=LCD_E Pin=U1-13
+Added Pin To Net: NetName=LCD_E Pin=U4-6
+Added Net: Name=LCD_E
+Added Pin To Net: NetName=LCD_RS Pin=U1-11
+Added Pin To Net: NetName=LCD_RS Pin=U4-4
+Added Net: Name=LCD_RS
+Added Pin To Net: NetName=LCD_RW Pin=U1-12
+Added Pin To Net: NetName=LCD_RW Pin=U4-5
+Added Net: Name=LCD_RW
+Added Pin To Net: NetName=NetC2_1 Pin=C2-1
+Added Pin To Net: NetName=NetC2_1 Pin=R4-1
+Added Pin To Net: NetName=NetC2_1 Pin=R5-1
+Added Pin To Net: NetName=NetC2_1 Pin=R8-2
+Added Pin To Net: NetName=NetC2_1 Pin=U2-4
+Added Net: Name=NetC2_1
+Added Pin To Net: NetName=NetC3_1 Pin=C3-1
+Added Pin To Net: NetName=NetC3_1 Pin=R6-1
+Added Pin To Net: NetName=NetC3_1 Pin=R7-1
+Added Pin To Net: NetName=NetC3_1 Pin=R9-2
+Added Pin To Net: NetName=NetC3_1 Pin=U3-2
+Added Net: Name=NetC3_1
+Added Pin To Net: NetName=NetD2_1 Pin=D2-1
+Added Pin To Net: NetName=NetD2_1 Pin=R2-1
+Added Net: Name=NetD2_1
+Added Pin To Net: NetName=NetJDC1_1 Pin=JDC1-1
+Added Pin To Net: NetName=NetJDC1_1 Pin=RV1-1
+Added Net: Name=NetJDC1_1
+Added Pin To Net: NetName=NetP1_1 Pin=P1-1
+Added Pin To Net: NetName=NetP1_1 Pin=U2-2
+Added Net: Name=NetP1_1
+Added Pin To Net: NetName=NetP1_2 Pin=P1-2
+Added Pin To Net: NetName=NetP1_2 Pin=R3-2
+Added Net: Name=NetP1_2
+Added Pin To Net: NetName=NetR3_1 Pin=R3-1
+Added Pin To Net: NetName=NetR3_1 Pin=U2-1
+Added Net: Name=NetR3_1
+Added Pin To Net: NetName=NRST Pin=C1-1
+Added Pin To Net: NetName=NRST Pin=R1-1
+Added Pin To Net: NetName=NRST Pin=SW1-1
+Added Pin To Net: NetName=NRST Pin=SW1-3
+Added Pin To Net: NetName=NRST Pin=U1-37
+Added Net: Name=NRST
+Added Pin To Net: NetName=VOLTAGE_ADC Pin=R5-2
+Added Pin To Net: NetName=VOLTAGE_ADC Pin=U1-26
+Added Pin To Net: NetName=VOLTAGE_ADC Pin=U2-3
+Added Net: Name=VOLTAGE_ADC
+Added Class: Name=Measure
+Added Room: Name=Display
+Added Room: Name=MCU
+Added Room: Name=Measure
+Added Room: Name=Power_Supply
