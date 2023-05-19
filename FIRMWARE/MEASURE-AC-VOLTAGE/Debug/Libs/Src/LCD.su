@@ -1,1 +1,6 @@
-../Libs/Src/LCD.c:9:6:LCD_Init	16	static
+../Libs/Src/LCD.c:12:6:LCD_Init	16	static
+../Libs/Src/LCD.c:54:6:LCD_SendCommand	16	static
+../Libs/Src/LCD.c:82:6:LCD_SendChar	16	static
+../Libs/Src/LCD.c:110:6:LCD_SetCursor	24	static
+../Libs/Src/LCD.c:140:6:LCD_SendString	24	static
+../Libs/Src/LCD.c:148:6:LCD_Printf	44	static

@@ -10,9 +10,9 @@
 
 #include "main.h"
 
-typedef enum {
-    LCD_1602,
-    LCD_2004
+typedef struct {
+    uint8_t LCD_column;
+    uint8_t LCD_row;
 } LCD_SizeTypeDef;
 
 typedef struct {
@@ -48,6 +48,7 @@ void LCD_SetCursor(LCD_HandleTypeDef *LCD,
                     uint8_t LCD_column_pos, uint8_t LCD_row_pos);
 void LCD_SendChar(LCD_HandleTypeDef *LCD, uint8_t LCD_data);
 void LCD_SendString(LCD_HandleTypeDef *LCD, char *LCD_string);
+void LCD_Printf(LCD_HandleTypeDef *LCD, const char *String, ...);
 
 
 #endif /* INC_LCD_H_ */
