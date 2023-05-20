@@ -1,0 +1,14 @@
+Removed Member From Class: ClassName=Measure Member=C19
+Removed Member From Class: ClassName=Display Member=C25
+Added Member To Class: ClassName=MCU Member=Component C3 Cap Non-Pol SMD
+Added Member To Class: ClassName=MCU Member=Component C5 Cap Non-Pol SMD
+Added Member To Class: ClassName=MCU Member=Component C7 Cap Non-Pol SMD
+Added Member To Class: ClassName=MCU Member=Component C9 Cap Non-Pol SMD
+Added Member To Class: ClassName=MCU Member=Component C11 Cap Non-Pol SMD
+Added Member To Class: ClassName=Power_Supply Member=Component C14 Cap Non-Pol SMD
+Added Member To Class: ClassName=Power_Supply Member=Component C16 Cap Non-Pol SMD
+Added Member To Class: ClassName=Power_Supply Member=Component C18 Cap Non-Pol SMD
+Added Member To Class: ClassName=Measure Member=Component C20 Cap Non-Pol SMD
+Added Member To Class: ClassName=Measure Member=Component C22 Cap Non-Pol SMD
+Added Member To Class: ClassName=Measure Member=Component C24 Cap Non-Pol SMD
+Added Member To Class: ClassName=Display Member=Component C26 Cap Non-Pol SMD

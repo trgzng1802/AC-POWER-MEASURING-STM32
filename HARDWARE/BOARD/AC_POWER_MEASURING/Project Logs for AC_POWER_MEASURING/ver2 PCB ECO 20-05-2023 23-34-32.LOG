@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=NetP3_1 Pin=R7-2
+Removed Pin From Net: NetName=NetP3_2 Pin=U4-1
+Added Pin To Net: NetName=NetP3_2 Pin=R7-2
+Added Pin To Net: NetName=NetP3_1 Pin=U4-1
+Added Member To Class: ClassName=Measure Member=Component R5 RESISTOR SMD
+Added Member To Class: ClassName=Measure Member=Component R6 RESISTOR SMD
+Added Member To Class: ClassName=Measure Member=Component R7 RESISTOR SMD
