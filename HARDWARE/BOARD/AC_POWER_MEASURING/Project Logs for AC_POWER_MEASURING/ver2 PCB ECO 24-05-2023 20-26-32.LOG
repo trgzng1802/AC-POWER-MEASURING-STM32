@@ -1,0 +1,3 @@
+Added Component: Designator=TP3(TP)
+Added Pin To Net: NetName=GND Pin=TP3-TP1
+Added Member To Class: ClassName=MCU Member=Component TP3 Test Point

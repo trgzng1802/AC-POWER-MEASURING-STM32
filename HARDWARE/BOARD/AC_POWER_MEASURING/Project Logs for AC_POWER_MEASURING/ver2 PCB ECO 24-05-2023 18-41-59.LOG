@@ -1,0 +1,15 @@
+Removed Member From Class: ClassName=Measure Member=VR2
+Added Component: Designator=H1(LO KHOAN 3MM)
+Added Component: Designator=H2(LO KHOAN 3MM)
+Added Component: Designator=H3(LO KHOAN 3MM)
+Added Component: Designator=H4(LO KHOAN 3MM)
+Added Member To Class: ClassName=Power_Supply Member=Component H1 Hole
+Added Member To Class: ClassName=Power_Supply Member=Component H2 Hole
+Added Member To Class: ClassName=Power_Supply Member=Component H3 Hole
+Added Member To Class: ClassName=Power_Supply Member=Component H4 Hole
+Added Member To Class: ClassName=Measure Member=Component P3 Domino 2
+Added Member To Class: ClassName=Measure Member=Component R5 RESISTOR SMD
+Added Member To Class: ClassName=Measure Member=Component R7 RESISTOR SMD
+Added Member To Class: ClassName=Measure Member=Component R8 RESISTOR SMD
+Added Member To Class: ClassName=Measure Member=Component U4 ACS712-20
+Added Member To Class: ClassName=Measure Member=Component VR1 10K
