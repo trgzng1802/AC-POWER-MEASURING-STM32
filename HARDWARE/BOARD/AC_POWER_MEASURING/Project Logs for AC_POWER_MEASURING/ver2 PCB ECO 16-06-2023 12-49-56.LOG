@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=GND Pin=C26-1
+Removed Pin From Net: NetName=+3.3 Pin=C26-2
+Removed Pin From Net: NetName=GND Pin=C27-1
+Removed Pin From Net: NetName=+3.3 Pin=C27-2
+Removed Member From Class: ClassName=Measure Member=C26
+Removed Member From Class: ClassName=Measure Member=C27
+Change Component Designator: OldDesignator=C28 NewDesignator=C26
+Change Component Designator: OldDesignator=C29 NewDesignator=C27
+Added Component: Designator=TP3(TP)
+Added Pin To Net: NetName=GND Pin=TP3-TP1
+Added Member To Class: ClassName=MCU Member=Component TP3 Test Point
