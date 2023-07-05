@@ -33,11 +33,16 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define	VOLT_OFFSET_CALIBRATION	2048
-#define VOLT_GAIN_CALIBRATION	0.221
+#define VOLT_GAIN		2665
+#define CURR_GAIN		84.5
 
-#define CURRT_OFFSET_CALIBRATION	3050
-#define CURRT_GAIN_CALIBRATION	0.008
+#define ADC_CALC		0.000805586 //3.3 / 4096
+
+#define VOLT_OFFSET		1.6915
+#define CURR_OFFSET		2.504
+
+#define SAMPLE			18
+#define SUM_VALUE		44
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -49,20 +54,25 @@
 ADC_HandleTypeDef hadc1;
 DMA_HandleTypeDef hdma_adc1;
 
-UART_HandleTypeDef huart1;
-
 /* USER CODE BEGIN PV */
 LCD_HandleTypeDef LCD;
 LCD_GPIOTypeDef LCD_GPIO;
 LCD_SizeTypeDef LCD_Size;
-uint32_t ADC_value;
 uint16_t adc_scan_value[2];
-uint16_t volt_max_value = 0;
-uint16_t currt_max_value = 0;
-float adc_max_value_avg = 0;
+
+uint8_t is_mili = 0;
+
+float curr_sum = 0;
+float volt_sum = 0;
+float volt_avg = 0;
+float curr_avg = 0;
 float Vrms = 0;
 float Irms = 0;
-uint32_t sample = 0;
+float temp = 0;
+
+uint8_t sample_count = 0;
+uint8_t sum_count = 0;
+
 char lcd_msg[50] = {};
 /* USER CODE END PV */
 
@@ -70,7 +80,6 @@ char lcd_msg[50] = {};
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
-static void MX_USART1_UART_Init(void);
 static void MX_ADC1_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -82,19 +91,43 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	 if(hadc->Instance == hadc1.Instance)
 	 {
-		 if (HAL_GetTick() - sample > 10000)
-		 {
-			 volt_max_value = 0;
-			 currt_max_value = 0;
-			 sample = HAL_GetTick();
-		 }
-		   if (volt_max_value < adc_scan_value[0])
-			   volt_max_value = adc_scan_value[0];
-		   if (currt_max_value < adc_scan_value[1])
-			   currt_max_value = adc_scan_value[1];
+		 sample_count++;
 
-		   Vrms = (volt_max_value - VOLT_OFFSET_CALIBRATION)*VOLT_GAIN_CALIBRATION;
-		   Irms = abs((CURRT_OFFSET_CALIBRATION - currt_max_value))*CURRT_GAIN_CALIBRATION;
+		 volt_sum += (adc_scan_value[1] * ADC_CALC - VOLT_OFFSET);
+		 curr_sum += (adc_scan_value[0] * ADC_CALC - CURR_OFFSET);
+
+		 if (sample_count == SAMPLE)
+		 {
+			 sum_count++;
+
+			 volt_sum = volt_sum / SAMPLE;
+			 curr_sum = curr_sum / SAMPLE;
+
+			 volt_avg += (volt_sum * volt_sum);
+			 curr_avg += (curr_sum * curr_sum);
+
+			 sample_count = 0;
+		 }
+		 if (sum_count == SUM_VALUE)
+		 {
+			 temp = sqrt(curr_avg / SUM_VALUE);
+			 Vrms = (sqrt(volt_avg / SUM_VALUE)) * VOLT_GAIN;
+			 Irms = (sqrt(curr_avg / SUM_VALUE)) * CURR_GAIN;
+//			if ((0.001 < Irms) && (Irms < 1))
+//			{
+//				Irms *= 1000;
+//				is_mili = 1;
+//			}
+//			else
+//				is_mili = 0;
+
+			 sum_count = 0;
+			 sample_count = 0;
+			 volt_sum = 0;
+			 volt_avg = 0;
+			 curr_sum = 0;
+			 curr_avg = 0;
+		 }
 	 }
 }
 
@@ -113,7 +146,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+   HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -129,7 +162,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_USART1_UART_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
   LCD_GPIO.LCD_RS_PIN = LCD_RS_Pin;
@@ -145,8 +177,8 @@ int main(void)
 
   LCD_Init(&LCD, GPIOB, LCD_GPIO, LCD_Size);
   HAL_ADCEx_Calibration_Start(&hadc1);
+  HAL_Delay(500);
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_scan_value, 2);
-  HAL_ADC_Start_IT(&hadc1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -158,10 +190,13 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	  LCD_SetCursor(&LCD, 0, 0);
-	  sprintf(lcd_msg, "VOLT: %03d.%02dVrms", (uint8_t)Vrms, ((uint8_t)(Vrms*100))%100);
+	  sprintf(lcd_msg, "Voltage: %03d.%02dV", (uint8_t)Vrms, (uint16_t)(Vrms*100) % 100);
 	  LCD_SendString(&LCD, lcd_msg);
 	  LCD_SetCursor(&LCD, 0, 1);
-	  sprintf(lcd_msg, "CURRT: %01d.%03dArms", (uint8_t)Irms, ((uint8_t)(Irms*1000))%1000);
+//	  if (is_mili)
+//		  sprintf(lcd_msg, "Current: %03d.%01dmA", (uint8_t)Irms, (uint8_t)(Irms*10) % 10);
+//	  else
+		  sprintf(lcd_msg, "Current: %01d.%04dA", (uint8_t)Irms, (uint16_t)(Irms*10000) % 10000);
 	  LCD_SendString(&LCD, lcd_msg);
   }
   /* USER CODE END 3 */
@@ -197,9 +232,9 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV4;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
@@ -270,39 +305,6 @@ static void MX_ADC1_Init(void)
 }
 
 /**
-  * @brief USART1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART1_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART1_Init 0 */
-
-  /* USER CODE END USART1_Init 0 */
-
-  /* USER CODE BEGIN USART1_Init 1 */
-
-  /* USER CODE END USART1_Init 1 */
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART1_Init 2 */
-
-  /* USER CODE END USART1_Init 2 */
-
-}
-
-/**
   * Enable DMA controller clock
   */
 static void MX_DMA_Init(void)
@@ -326,6 +328,8 @@ static void MX_DMA_Init(void)
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOD_CLK_ENABLE();
@@ -345,6 +349,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */

@@ -71,6 +71,7 @@ void Error_Handler(void);
 #define LCD_RW_GPIO_Port GPIOB
 #define LCD_RS_Pin GPIO_PIN_9
 #define LCD_RS_GPIO_Port GPIOB
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
