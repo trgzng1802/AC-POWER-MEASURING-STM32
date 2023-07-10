@@ -31,6 +31,7 @@
 )
 */
 #heading(level: 1, outlined: false)[DANH SÁCH HÌNH ẢNH]
+#v(2em)
 #show outline: it => {
     set heading(numbering: "1.1.1")
     set text(font: arial, size: font_size.footnotesize)
