@@ -3,5 +3,5 @@
 
     Từ công suất xác định được, ta có thể dùng kết quả vào nhiều mục đích như: lựa chọn đường dây phù hợp, tính toán điện năng tiêu thụ, v.v. Dẫn đến việc phải tăng độ tin cậy của kết quả đo bằng vi điều khiển với nhiều phương pháp như dùng biến áp, cảm biến, điện trở shunt hoặc kết hợp các phương pháp với nhau. 
 
-    Bài báo cáo này chỉ ra các vấn đề cơ bản và đưa ra giải pháp cho việc đo công suất lưới khá chính xác bằng bộ ADC 12-bit của vi điều khiển STM32F103C8T6 kết hợp với cảm biến ACS712 và biến áp ZMPT101B và phương pháp oversampling để tăng độ phân giải bộ ADC.
+    Bài báo cáo này chỉ ra các vấn đề cơ bản và đưa ra giải pháp cho việc đo công suất lưới  bằng bộ ADC 12-bit của vi điều khiển STM32F103C8T6.
 ]

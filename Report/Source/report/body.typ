@@ -21,7 +21,7 @@
     } else if it.kind == image {
         it.body
         [
-        #textbf("Figure")
+        #textbf("Hình")
         #locate(loc => {
             [#counter_chapter.at(loc).first().#counter_image.at(loc).first()]
         })
@@ -29,7 +29,7 @@
         ]
     } else if it.kind == table {
         [
-        #textbf("Table")
+        #textbf("Bảng")
         #locate(loc => {
             [#counter_chapter.at(loc).first().#counter_table.at(loc).first()]
         })
@@ -128,4 +128,8 @@
 }
 
 // import contents from the context file 
-#include "../contents/context.typ"
+#include "../contents/chapter_1.typ"
+
+#pagebreak()
+
+#include "../contents/chapter_2.typ"

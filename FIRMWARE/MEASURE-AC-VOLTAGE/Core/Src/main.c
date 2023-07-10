@@ -33,13 +33,13 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define VOLT_GAIN		2665
+#define VOLT_GAIN		2670
 #define CURR_GAIN		84.5
 
 #define ADC_CALC		0.000805586 //3.3 / 4096
 
 #define VOLT_OFFSET		1.6915
-#define CURR_OFFSET		2.504
+#define CURR_OFFSET		2.5111
 
 #define SAMPLE			18
 #define SUM_VALUE		44
@@ -68,7 +68,8 @@ float volt_avg = 0;
 float curr_avg = 0;
 float Vrms = 0;
 float Irms = 0;
-float temp = 0;
+float temp_curr = 0;
+float temp_volt = 0;
 
 uint8_t sample_count = 0;
 uint8_t sum_count = 0;
@@ -89,45 +90,36 @@ static void MX_ADC1_Init(void);
 /* USER CODE BEGIN 0 */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-	 if(hadc->Instance == hadc1.Instance)
+	 sample_count++;
+
+	 volt_sum += (adc_scan_value[1] * ADC_CALC - VOLT_OFFSET);
+	 curr_sum += (adc_scan_value[0] * ADC_CALC - CURR_OFFSET);
+
+	 if (sample_count == SAMPLE)
 	 {
-		 sample_count++;
+		 sum_count++;
 
-		 volt_sum += (adc_scan_value[1] * ADC_CALC - VOLT_OFFSET);
-		 curr_sum += (adc_scan_value[0] * ADC_CALC - CURR_OFFSET);
+		 volt_sum = volt_sum / SAMPLE;
+		 curr_sum = curr_sum / SAMPLE;
 
-		 if (sample_count == SAMPLE)
-		 {
-			 sum_count++;
+		 volt_avg += (volt_sum * volt_sum);
+		 curr_avg += (curr_sum * curr_sum);
 
-			 volt_sum = volt_sum / SAMPLE;
-			 curr_sum = curr_sum / SAMPLE;
+		 sample_count = 0;
+	 }
+	 if (sum_count == SUM_VALUE)
+	 {
+		 temp_curr = sqrt(curr_avg / SUM_VALUE);
+		 temp_volt = sqrt(volt_avg / SUM_VALUE);
+		 Vrms = (sqrt(volt_avg / SUM_VALUE)) * VOLT_GAIN;
+		 Irms = (sqrt(curr_avg / SUM_VALUE)) * CURR_GAIN;
 
-			 volt_avg += (volt_sum * volt_sum);
-			 curr_avg += (curr_sum * curr_sum);
-
-			 sample_count = 0;
-		 }
-		 if (sum_count == SUM_VALUE)
-		 {
-			 temp = sqrt(curr_avg / SUM_VALUE);
-			 Vrms = (sqrt(volt_avg / SUM_VALUE)) * VOLT_GAIN;
-			 Irms = (sqrt(curr_avg / SUM_VALUE)) * CURR_GAIN;
-//			if ((0.001 < Irms) && (Irms < 1))
-//			{
-//				Irms *= 1000;
-//				is_mili = 1;
-//			}
-//			else
-//				is_mili = 0;
-
-			 sum_count = 0;
-			 sample_count = 0;
-			 volt_sum = 0;
-			 volt_avg = 0;
-			 curr_sum = 0;
-			 curr_avg = 0;
-		 }
+		 sum_count = 0;
+		 sample_count = 0;
+		 volt_sum = 0;
+		 volt_avg = 0;
+		 curr_sum = 0;
+		 curr_avg = 0;
 	 }
 }
 
@@ -146,7 +138,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-   HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -193,10 +185,7 @@ int main(void)
 	  sprintf(lcd_msg, "Voltage: %03d.%02dV", (uint8_t)Vrms, (uint16_t)(Vrms*100) % 100);
 	  LCD_SendString(&LCD, lcd_msg);
 	  LCD_SetCursor(&LCD, 0, 1);
-//	  if (is_mili)
-//		  sprintf(lcd_msg, "Current: %03d.%01dmA", (uint8_t)Irms, (uint8_t)(Irms*10) % 10);
-//	  else
-		  sprintf(lcd_msg, "Current: %01d.%04dA", (uint8_t)Irms, (uint16_t)(Irms*10000) % 10000);
+	  sprintf(lcd_msg, "Current: %01d.%04dA", (uint8_t)Irms, (uint16_t)(Irms*10000) % 10000);
 	  LCD_SendString(&LCD, lcd_msg);
   }
   /* USER CODE END 3 */
