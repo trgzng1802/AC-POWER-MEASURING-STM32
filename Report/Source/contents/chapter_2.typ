@@ -146,7 +146,7 @@ Sau khi tìm hiểu các loại biến áp, vấn đề đã được giải quy
     caption: [Biến áp ZMPT101B.],
 ) <zmpt101b>
 
-Theo datasheet, ZMPT101B là biến áp dòng, tức là ta phải mắc tải hạn dòng ở cuộn sơ cấp để tạo dòng qua biến áp và mắc trở lấy mẫu tại cuộn thứ cấp. Biến áp có tỷ số 2mA:2mA, nếu ta chọn trở hạn dòng $R_L = 820k Omega$ và trở lấy mẫu $R_S = 100 Omega$, giả sử điện áp lưới là $230V#sub[rms]$ thì điện áp trên trở $R_S$ có biên độ là $U_R_S = frac(230 dot root(,2) dot 2, R_L) dot R_S = frac(230 dot root(,2) dot 2, 820k) dot 100 = 0.079V#sub[pp]$. Với $V#sub[pp]$ khá nhỏ như vậy, ảnh hưởng của nhiễu đối với tín hiệu là rất lớn, ta cần 1 tầng khuếch đại vi sai để loại bỏ nhiễu từ biến áp. Tuy nhiên, điện áp lưới có dạng sóng sin, có bán kỳ âm và bán kỳ dương. ADC của STM32F103C8T6 chỉ có thể đọc giá trị điện áp dương từ 0 - V#sub[DDA], vậy nên ta cần có 1 tầng cộng điện áp DC $V#sub[offset] = frac(V#sub[DDA], 2)$ để nâng toàn bộ điện áp $U_R$ lên phần dương.
+Theo datasheet, ZMPT101B là biến áp dòng, tức là ta phải mắc tải hạn dòng ở cuộn sơ cấp để tạo dòng qua biến áp và mắc trở lấy mẫu tại cuộn thứ cấp. Biến áp có tỷ số 2mA:2mA, nếu ta chọn trở hạn dòng $R_L = 820k Omega$ và trở lấy mẫu $R_S = 100 Omega$, giả sử điện áp lưới là $230V#sub[rms]$ thì điện áp trên trở $R_S$ có biên độ là $V_R_S = frac(230 dot root(,2) dot 2, R_L) dot R_S = frac(230 dot root(,2) dot 2, 820k) dot 100 = 0.079V#sub[pp]$. Với $V#sub[pp]$ khá nhỏ như vậy, ảnh hưởng của nhiễu đối với tín hiệu là rất lớn, ta cần 1 tầng khuếch đại vi sai để loại bỏ nhiễu từ biến áp. Tuy nhiên, điện áp lưới có dạng sóng sin, có bán kỳ âm và bán kỳ dương. ADC của STM32F103C8T6 chỉ có thể đọc giá trị điện áp dương từ 0 - V#sub[DDA], vậy nên ta cần có 1 tầng cộng điện áp DC $V#sub[offset] = frac(V#sub[DDA], 2)$ để nâng toàn bộ điện áp $U_R$ lên phần dương.
 
 Ta sẽ thiết kế từng tầng, đầu tiên là tầng khuếch đại vi sai dùng OPAMP.
 + @opamp-differ là cấu trúc cơ bản của tầng khuếch đại vi sai:
@@ -156,4 +156,13 @@ Ta sẽ thiết kế từng tầng, đầu tiên là tầng khuếch đại vi s
     caption: [Sơ đồ nguyên lý khuếch đại vi sai dùng OPAMP],
 ) <opamp-differ>
 
-Độ lợi vi sai của mạch @opamp-differ: $V#sub[out] = V_2 dot (1 + frac(R_2, R_1)) - V_1 dot (frac(R_2, R_1))$. 
+Theo lý thuyết, độ lợi vi sai của mạch @opamp-differ: 
+
+$V#sub[out] = V_2 dot (frac(R_5, R_4 + R_5))(1 + frac(R_2, R_1)) - V_1 dot (frac(R_2, R_1))$. Với $R_1 = R_2$ và $R_4 = R_5$, ta được $V#sub[out] = V_2 - V_1 = V_R$, nguồn cấp $V#sub[CC] = 3.3V$ và $V#sub[EE] = -3.3V $ thì dạng sóng $V#sub[out]$ thu được như @form-wave-opamp-dual:
+
+#figure(
+    image("../images/form_wave_opamp_dual.png", width: 100%),
+    caption: [Dạng sóng $V#sub[out]$],
+) <form-wave-opamp-dual>
+
+Tuy nhiên, việc chưa đủ kiến thức để thiết kế nguồn đôi $plus.minus 3.3V$ nên ta sẽ chuyển sang cấp nguồn đơn và cấp thêm $V#sub[offset] = frac(V#sub[CC], 2)$ vào $V#sub[+]$ 
