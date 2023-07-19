@@ -86,4 +86,6 @@
     include "toc.typ"
     
     include "body.typ"
+
+    include "reference.typ"
 }

@@ -33,7 +33,7 @@
         font: arial,
         size: font_size.small,
         weight: "bold",
-        )[ĐẠI HỌC BÁCH KHOA],
+        )[TRƯỜNG ĐẠI HỌC BÁCH KHOA],
     )
     #v(-10pt)
     #line(
@@ -53,7 +53,7 @@
         font: arial,
         size: font_size.small,
         weight: "bold",
-        )[BÁO CÁO HỌC PHẦN],
+        )[BÁO CÁO],
 
         // text(
         // font: arial,

@@ -1,0 +1,15 @@
+an3322:
+  type: Report
+  title: Watt-hour meter based on the STM32F101 microcontroller
+  author: Ludek Holoubek
+  url: https://www.st.com/resource/en/application_note/an3322-watthour-meter-based-on-the-stm32f101-microcontroller-stmicroelectronics.pdf
+
+ac_design:
+  type: Article
+  author: 
+  - Zhanpeng Huang 
+  - Ying Tang
+  - Qin Li
+  title: Design of AC Voltage Tester Based on STM32
+  date: 2021
+  doi: 10.1088/1742-6596/1920/1/012008

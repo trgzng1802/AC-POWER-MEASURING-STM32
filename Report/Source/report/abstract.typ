@@ -28,3 +28,7 @@
     justify: true,
     leading: 1.5em, 
     first-line-indent: 2em)[#text(font: arial, size: font_size.footnotesize)[#abstract_vn]]
+
+Bài báo cáo có tham khảo một số tài liệu.
+
+@an3322 @ac_design

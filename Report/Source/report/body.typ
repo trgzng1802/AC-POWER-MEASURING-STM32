@@ -133,3 +133,7 @@
 #pagebreak()
 
 #include "../contents/chapter_2.typ"
+
+#pagebreak()
+
+#include "../contents/conclusion.typ"
